@@ -25,8 +25,7 @@ public class ContactCreationTests {
     
     @Test
     public void testContactCreation() {
-        wd.get("http://localhost/addressbook/");
-        wd.findElement(By.id("LoginForm")).click();
+        wd.get("http://localhost/addressbook/edit.php");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
