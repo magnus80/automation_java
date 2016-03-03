@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 /**
  * Created by Homer-PC on 01.03.2016.
+ vtnjl
  */
 public class GroupHelper extends HelperBase {
 

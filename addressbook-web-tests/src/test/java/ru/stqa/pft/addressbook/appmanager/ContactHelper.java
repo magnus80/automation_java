@@ -35,4 +35,16 @@ public class ContactHelper extends HelperBase{
     public void initContactCreation() {
         wd.findElement(By.linkText("add new")).click();
     }
+
+    public void selectContact() {
+        click(By.id("1"));
+    }
+
+    public void editContact() {
+        click(By.xpath("//tr[@class='odd']/td[8]/a/img"));
+    }
+
+    public void submitContactModification() {
+        click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    }
 }
