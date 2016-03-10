@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * Created by Homer-PC on 01.03.2016.
@@ -22,12 +21,7 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("groups"));
   }
 
-     public void gotoHomePage() {
-        if (isElementPresent(By.id("maintable"))){
-            return;
-        }
-            click(By.linkText("home"));
-     }
+
 
     public void returnToHomePage() {
         if (isElementPresent(By.id("maintable"))){

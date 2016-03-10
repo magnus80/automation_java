@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 /**
@@ -53,5 +51,24 @@ public class ContactHelper extends HelperBase{
     public void deleteSelectedContact() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
         wd.switchTo().alert().accept();
+    }
+
+    public void createContact(ContactData contact) {
+        initContactCreation();
+        fillContactForm(contact);
+        submitContactCreation();
+        gotoHomePage();
+    }
+
+    public void gotoHomePage() {
+        if (isElementPresent(By.id("maintable"))){
+            return;
+        }
+        click(By.linkText("home"));
+    }
+
+    public boolean isThereAContact() {
+
+        return isElementPresent(By.name("selected[]"));
     }
 }
