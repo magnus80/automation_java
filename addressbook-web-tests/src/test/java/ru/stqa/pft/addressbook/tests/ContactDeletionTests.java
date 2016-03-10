@@ -17,7 +17,6 @@ public class ContactDeletionTests extends TestBase{
         app.getNavigationHelper().gotoGroupPage();
         app.getGroupHelper().createGroup(new GroupData("TestGroup1", null, null));
       }
-      //app.getContactHelper().gotoHomePage();
       app.getContactHelper().createContact(new ContactData("Ivan3", "I", "Ivanov", "Ivy", null, null, "Московская, 90", "56-90-90", "968-253-36-36", "56-56-56", "56-65-56", "ivan.ivanovi.@best.com"));
     }
     app.getContactHelper().gotoHomePage();
