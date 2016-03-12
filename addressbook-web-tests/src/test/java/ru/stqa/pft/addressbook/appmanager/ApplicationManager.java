@@ -32,7 +32,7 @@ public class ApplicationManager {
         else if (browser== BrowserType.IE){
             wd = new InternetExplorerDriver();}
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        wd.get("http://localhost:81/addressbook/group.php");
+        wd.get("http://localhost:81/addressbook");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
