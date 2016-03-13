@@ -22,7 +22,7 @@ public class ContactModificationTests extends TestBase {
       //app.getContactHelper().gotoHomePage();
       app.getContactHelper().createContact(new ContactData("Ivan2", "I", "Ivano1v", "Ivy1", "QA Ingeneer", "Best1", "Московская, 90", "56-90-90", "968-253-36-36", "56-56-56", "56-65-56", "ivan.ivanovi.@best.com"));
     }
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(before-1);
     app.getContactHelper().editContact();
     app.getContactHelper().fillContactForm(new ContactData("Ivan1", "I", "Ivano1v", "Ivy1", "QA Ingeneer", "Best1", "Московская, 90", "56-90-90", "968-253-36-36", "56-56-56", "56-65-56", "ivan.ivanovi.@best.com"));
     app.getContactHelper().submitContactModification();
