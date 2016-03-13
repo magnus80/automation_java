@@ -57,18 +57,14 @@ public class ContactHelper extends HelperBase{
         initContactCreation();
         fillContactForm(contact);
         submitContactCreation();
-        gotoHomePage();
-    }
-
-    public void gotoHomePage() {
-        if (isElementPresent(By.id("maintable"))){
-            return;
-        }
-        click(By.linkText("home"));
+        //gotoHomePage();
     }
 
     public boolean isThereAContact() {
-
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
     }
 }
