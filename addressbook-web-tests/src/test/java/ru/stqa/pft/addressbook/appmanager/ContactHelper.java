@@ -75,17 +75,14 @@ public class ContactHelper extends HelperBase{
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts=new ArrayList<ContactData>();
-        //List<WebElement> elements=wd.findElements(By.cssSelector("span.group"));
-        //[20:40:34] Alexei Barantsev: сначала находим строки:
         List<WebElement> rows = wd.findElements(By.name("entry"));
-        for (WebElement element:rows){
+        for (WebElement row:rows){
             List<WebElement> cells = row.findElements(By.tagName("td"));
-            String firstname=element.getText();
-            String lastname=cells.getText();
-            ContactData contact=new ContactData(firstname,lastname,null);
+            String lastname = cells.get(2).getText();
+            String firstname = cells.get(1).getText();
+            ContactData contact=new ContactData(lastname,firstname,null,null,null,null,null,null,null,null,null,null);
             contacts.add(contact);
         }
-        //      [20:41:23] Alexei Barantsev: внутри отдельной строки можно найти все ячейки:
         return contacts;
     }
 }
