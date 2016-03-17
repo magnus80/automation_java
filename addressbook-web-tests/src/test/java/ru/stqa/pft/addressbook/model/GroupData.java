@@ -11,19 +11,9 @@ public class GroupData {
     private final String header;
     private final String footer;
 
-    @Override
-    public String toString() {
-        return "GroupData{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
     public int getId() {
         return id;
     }
-
-
 
     public GroupData( int id,String name, String header, String footer) {
         this.id = id;
@@ -32,17 +22,12 @@ public class GroupData {
         this.footer = footer;
     }
 
-
-
-
-
   public GroupData(String name, String header, String footer) {
         this.id = Integer.MAX_VALUE;
         this.name = name;
         this.header = header;
         this.footer = footer;
     }
-
 
     public String getName() {
         return name;
@@ -72,5 +57,12 @@ public class GroupData {
     return name != null ? name.hashCode() : 0;
   }
 
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            '}';
+  }
 
 }
