@@ -43,11 +43,10 @@ public class ContactHelper extends HelperBase {
 
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
-    ;
   }
 
   public void editContact() {
-    click(By.xpath("//tr[@class='odd']/td[8]/a/img"));
+    click(By.xpath("//tr[@class='odd']/td[8]/a"));
   }
 
   public void submitContactModification() {
@@ -63,7 +62,14 @@ public class ContactHelper extends HelperBase {
     initContactCreation();
     fillContactForm(contact);
     submitContactCreation();
-    //gotoHomePage();
+    returnToContactPage();
+  }
+
+  public void returnToContactPage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home page"));
   }
 
   public void modifyContact(int index, ContactData contact) {
@@ -71,6 +77,7 @@ public class ContactHelper extends HelperBase {
     editContact();
     fillContactForm(contact);
     submitContactModification();
+    returnToContactPage();
   }
 
   public boolean isThereAContact() {
