@@ -6,10 +6,10 @@ public class GroupData {
     this.id = id;
   }
 
-  private int id;
-  private final String name;
-  private final String header;
-  private final String footer;
+  private int id= Integer.MAX_VALUE;
+  private String name;
+  private String header;
+  private String footer;
 
   public int getId() {
     return id;
