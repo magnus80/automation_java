@@ -15,37 +15,69 @@ public class ContactData {
   private String fax;
   private String email;
 
-
-  public ContactData(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.work = work;
-    this.fax = fax;
-    this.email = email;
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
   }
 
-  public ContactData(int id, String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email) {
-    this.id = id;
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withMiddlename(String middlename) {
     this.middlename = middlename;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
     this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
     this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public ContactData withHome(String home) {
     this.home = home;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
     this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withWork(String work) {
     this.work = work;
+    return this;
+  }
+
+  public ContactData withFax(String fax) {
     this.fax = fax;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
     this.email = email;
+    return this;
   }
 
   public int getId() {
@@ -100,9 +132,7 @@ public class ContactData {
     return email;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+
 
   @Override
   public boolean equals(Object o) {
