@@ -46,7 +46,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void editContact() {
-    click(By.xpath("//tr[@class='odd']/td[8]/a"));
+    click(By.cssSelector("img[title='Edit']"));
   }
 
   public void submitContactModification() {
@@ -61,7 +61,8 @@ public class ContactHelper extends HelperBase {
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
-    returnToContactPage();
+    //не нужно возвращаться
+    //returnToContactPage();
   }
 
   private void selectContactById(int id) {
@@ -83,7 +84,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
-    selectContactById(contact.getId());
+    //не нужно выделять
+    //selectContactById(contact.getId());
     editContact();
     fillContactForm(contact);
     submitContactModification();
