@@ -19,10 +19,10 @@ public class ContactDeletionTests extends TestBase {
     if (app.contact().all().size() == 0) {
       app.goTo().groupPage();
       if (app.group().all().size() == 0) {
-        app.group().create(new GroupData().withName("TestGroup1"));
+        app.group().create(new GroupData().withName("TestGroup100"));
       }
       app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstname("Ivan3").withMiddlename("I").withLastname("Ivanov").withNickname("Ivy"));
+      app.contact().create(new ContactData().withFirstname("Ivan100").withMiddlename("I").withLastname("Ivanov").withNickname("Ivy"));
     }
   }
 
