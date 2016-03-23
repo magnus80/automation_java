@@ -87,7 +87,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
-    //не нужно выделять
+    //не нужно выделять сразу редактировать
     //selectContactById(contact.getId());
     editContact();
     fillContactForm(contact);
