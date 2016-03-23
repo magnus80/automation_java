@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Homer-PC on 01.03.2016.
@@ -117,10 +115,14 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-      String[] phones = cells.get(5).getText().split("\n");
+      String allPhones=cells.get(5).getText();
+      String Address=cells.get(3).getText();
+      String allEmails=cells.get(4).getText();
+      //String[] phones = cells.get(5).getText().split("\n");
 
-      contactCache.add(new ContactData().withId(id).withLastname(lastname).withFirstname(firstname).withHomePhone(phones[0]).
-                        withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+      //contactCache.add(new ContactData().withId(id).withLastname(lastname).withFirstname(firstname).withHomePhone(phones[0]).
+      //                  withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+      contactCache.add(new ContactData().withId(id).withLastname(lastname).withFirstname(firstname).withAddress(Address).withAllEmails(allEmails).withAllPhones(allPhones));
     }
     return new Contacts(contactCache);
   }
@@ -133,8 +135,13 @@ public class ContactHelper extends HelperBase {
     String home=wd.findElement(By.name("home")).getAttribute("value");
     String mobile=wd.findElement(By.name("mobile")).getAttribute("value");
     String work=wd.findElement(By.name("work")).getAttribute("value");
+    String address=wd.findElement(By.cssSelector("textarea[name='address']")).getAttribute("value");
+    String email1=wd.findElement(By.cssSelector("input[name='email']")).getAttribute("value");
+    String email2=wd.findElement(By.cssSelector("input[name='email2']")).getAttribute("value");
+    String email3=wd.findElement(By.cssSelector("input[name='email3']")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).
+            withAddress(address).withEmail(email1).withEmail2(email2).withEmail3(email3).
             withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
   }
 
