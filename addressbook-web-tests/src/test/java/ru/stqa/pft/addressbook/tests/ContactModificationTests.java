@@ -33,7 +33,7 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() {
     Contacts before = app.contact().all();
-    ContactData modifiedContact=before.iterator().next();
+    ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId()).withFirstname("Ivan81").withLastname("Ivanov");
     app.contact().modify(contact);

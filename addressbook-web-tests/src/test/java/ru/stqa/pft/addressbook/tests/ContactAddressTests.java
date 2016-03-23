@@ -14,9 +14,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Homer-PC on 23.03.2016.
  */
-public class ContactAddressTests extends TestBase{
+public class ContactAddressTests extends TestBase {
     @BeforeMethod
-    public void ensurePreconditions(){
+    public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.goTo().groupPage();
@@ -29,13 +29,11 @@ public class ContactAddressTests extends TestBase{
     }
 
     @Test
-    public void testContactAddress(){
+    public void testContactAddress() {
         app.goTo().homePage();
-        ContactData contact=app.contact().all().iterator().next();
-        ContactData contactInfoFromEditForm=app.contact().infoFromEditForm(contact);
-//        String first=contact.getAddress();
-//        String second=contactInfoFromEditForm.getAddress();
-        assertThat(contact.getAddress(), equalTo (contactInfoFromEditForm.getAddress()));
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
     }
 
 /*    private String mergeAddresses(ContactData contactInfoFromEditForm) {

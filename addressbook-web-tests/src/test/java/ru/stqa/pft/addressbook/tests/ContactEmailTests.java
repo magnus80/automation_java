@@ -16,7 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ContactEmailTests extends TestBase {
     @BeforeMethod
-    public void ensurePreconditions(){
+    public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.goTo().groupPage();
@@ -29,21 +29,21 @@ public class ContactEmailTests extends TestBase {
     }
 
     @Test
-    public void testContactEmails(){
+    public void testContactEmails() {
         app.goTo().homePage();
-        ContactData contact=app.contact().all().iterator().next();
-        ContactData contactInfoFromEditForm=app.contact().infoFromEditForm(contact);
-        assertThat(contact.getAllEmails(), equalTo (mergeEmails(contactInfoFromEditForm)));
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
     }
 
     private String mergeEmails(ContactData contactInfoFromEditForm) {
-        return Arrays.asList(contactInfoFromEditForm.getEmail(),contactInfoFromEditForm.getEmail2(),contactInfoFromEditForm.getEmail3())
-                .stream().filter((s)->!s.equals("")) //фильтрация от пустых значений
+        return Arrays.asList(contactInfoFromEditForm.getEmail(), contactInfoFromEditForm.getEmail2(), contactInfoFromEditForm.getEmail3())
+                .stream().filter((s) -> !s.equals("")) //фильтрация от пустых значений
                 .map(ContactEmailTests::cleanedEmails)   //очистка от лишних символов
                 .collect(Collectors.joining("\n")); //склейка
     }
 
-    public static String cleanedEmails (String email){
-        return email.replaceAll("\\s","").replaceAll("[-()]","");
+    public static String cleanedEmails(String email) {
+        return email.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 }
