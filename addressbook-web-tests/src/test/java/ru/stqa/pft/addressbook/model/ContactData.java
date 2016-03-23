@@ -9,11 +9,23 @@ public class ContactData {
   private String title;
   private String company;
   private String address;
-  private String home;
-  private String mobile;
-  private String work;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
   private String fax;
   private String email;
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getHomePhone() {
+    return homePhone;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -55,18 +67,18 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withHome(String home) {
-    this.home = home;
+  public ContactData withHomePhone(String home) {
+    this.homePhone = home;
     return this;
   }
 
-  public ContactData withMobile(String mobile) {
-    this.mobile = mobile;
+  public ContactData withMobilePhone(String mobile) {
+    this.mobilePhone = mobile;
     return this;
   }
 
-  public ContactData withWork(String work) {
-    this.work = work;
+  public ContactData withWorkPhone(String work) {
+    this.workPhone = work;
     return this;
   }
 
@@ -112,17 +124,7 @@ public class ContactData {
     return address;
   }
 
-  public String getHome() {
-    return home;
-  }
 
-  public String getMobile() {
-    return mobile;
-  }
-
-  public String getWork() {
-    return work;
-  }
 
   public String getFax() {
     return fax;

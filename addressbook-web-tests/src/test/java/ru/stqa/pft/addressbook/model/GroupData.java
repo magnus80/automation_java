@@ -11,7 +11,6 @@ public class GroupData {
   public GroupData withId(int id) {
     this.id = id;
     return this;
-
   }
 
   public GroupData withName(String name) {
