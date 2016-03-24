@@ -12,3 +12,4 @@ gradle-app.setting
 .idea/workspace.xml
 *.log
 addressbook-web-tests/debug.log
+addressbook-web-tests/debug.log

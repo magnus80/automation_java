@@ -147,8 +147,6 @@ public class ContactHelper extends HelperBase {
             withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
   }
 
-
-
   private void initContactModificationById(int id) {
     //WebElement checkbox=
     //wd.findElement(By.xpath(String.format("input[value='%s']./../..td[8]/a",id))).click();
@@ -160,23 +158,25 @@ public class ContactHelper extends HelperBase {
 
   public ContactData infoFromDetailsForm(ContactData contact) {
     initViewContactDetailsById(contact.getId());
-    WebElement fio1 = wd.findElement(By.xpath("//div[@id='content']/b[1]"));
+   // WebElement fio1 = wd.findElement(By.xpath("//div[@id='content']/b[1]"));
     String fio = wd.findElement(By.xpath("//div[@id='content']/b")).getText();
 /*  String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String middlename = wd.findElement(By.name("middlename")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");*/
-    String nickname = wd.findElement(By.name("nickname")).getAttribute("value");
+ /*   WebElement fio1 = wd.findElement(By.xpath("//div[@id='content']/br/."));
+    String nickname = wd.findElement(By.xpath("//div[@id='content']/br/.")).getText();
     String home = wd.findElement(By.name("H:")).getAttribute("value");
     String mobile = wd.findElement(By.name("M:")).getAttribute("value");
     String work = wd.findElement(By.name("W:")).getAttribute("value");
-    String address = wd.findElement(By.cssSelector("textarea[name='address']")).getAttribute("value");
-    String email1 = wd.findElement(By.cssSelector("input[name='email']")).getAttribute("value");
-    String email2 = wd.findElement(By.cssSelector("input[name='email2']")).getAttribute("value");
-    String email3 = wd.findElement(By.cssSelector("input[name='email3']")).getAttribute("value");
+    String address = wd.findElement(By.cssSelector("textarea[name='address']")).getAttribute("value");*/
+    String email1 = wd.findElement(By.xpath("//div[@id='content']//a[1]")).getText();
+    String email2 = wd.findElement(By.xpath("//div[@id='content']//a[3]")).getText();
+    String email3 = wd.findElement(By.xpath("//div[@id='content']//a[5]")).getText();
     wd.navigate().back();
-    return new ContactData().withId(contact.getId()).withFio(fio).withNickname(nickname).withAddress(address).
+    return new ContactData().withId(contact.getId())/*.withFio(fio).withNickname(nickname).withAddress(address).
             withEmail(email1).withEmail2(email2).withEmail3(email3).withHomePhone(home).withMobilePhone(mobile).
-            withWorkPhone(work);
+            withWorkPhone(work)*/
+            ;
   }
 
   private void initViewContactDetailsById(int id) {
