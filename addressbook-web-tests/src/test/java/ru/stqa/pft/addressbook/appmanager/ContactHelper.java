@@ -60,20 +60,20 @@ public class ContactHelper extends HelperBase {
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
-    contactCache=null;
+    contactCache = null;
     //не нужно возвращаться
     //returnToContactPage();
   }
 
   private void selectContactById(int id) {
-    wd.findElement(By.cssSelector("input[value='" +id+ "']")).click();
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void create(ContactData contact) {
     initContactCreation();
     fillContactForm(contact);
     submitContactCreation();
-    contactCache=null;
+    contactCache = null;
     returnToContactPage();
   }
 
@@ -90,7 +90,7 @@ public class ContactHelper extends HelperBase {
     editContact();
     fillContactForm(contact);
     submitContactModification();
-    contactCache=null;
+    contactCache = null;
     returnToContactPage();
   }
 
@@ -102,10 +102,10 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  private Contacts contactCache=null;
+  private Contacts contactCache = null;
 
   public Contacts all() {
-    if (contactCache!=null){
+    if (contactCache != null) {
       return new Contacts(contactCache);
     }
     contactCache = new Contacts();
@@ -115,9 +115,9 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-      String allPhones=cells.get(5).getText();
-      String Address=cells.get(3).getText();
-      String allEmails=cells.get(4).getText();
+      String allPhones = cells.get(5).getText();
+      String Address = cells.get(3).getText();
+      String allEmails = cells.get(4).getText();
       //String[] phones = cells.get(5).getText().split("\n");
 
       //contactCache.add(new ContactData().withId(id).withLastname(lastname).withFirstname(firstname).withHomePhone(phones[0]).
@@ -130,15 +130,15 @@ public class ContactHelper extends HelperBase {
 
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
-    String firstname=wd.findElement(By.name("firstname")).getAttribute("value");
-    String lastname=wd.findElement(By.name("lastname")).getAttribute("value");
-    String home=wd.findElement(By.name("home")).getAttribute("value");
-    String mobile=wd.findElement(By.name("mobile")).getAttribute("value");
-    String work=wd.findElement(By.name("work")).getAttribute("value");
-    String address=wd.findElement(By.cssSelector("textarea[name='address']")).getAttribute("value");
-    String email1=wd.findElement(By.cssSelector("input[name='email']")).getAttribute("value");
-    String email2=wd.findElement(By.cssSelector("input[name='email2']")).getAttribute("value");
-    String email3=wd.findElement(By.cssSelector("input[name='email3']")).getAttribute("value");
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    String address = wd.findElement(By.cssSelector("textarea[name='address']")).getAttribute("value");
+    String email1 = wd.findElement(By.cssSelector("input[name='email']")).getAttribute("value");
+    String email2 = wd.findElement(By.cssSelector("input[name='email2']")).getAttribute("value");
+    String email3 = wd.findElement(By.cssSelector("input[name='email3']")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).
             withAddress(address).withEmail(email1).withEmail2(email2).withEmail3(email3).
@@ -148,7 +148,7 @@ public class ContactHelper extends HelperBase {
   private void initContactModificationById(int id) {
     //WebElement checkbox=
     //wd.findElement(By.xpath(String.format("input[value='%s']./../..td[8]/a",id))).click();
-    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     //WebElement row=checkbox.findElement(By.xpath("./../.."));
     //List<WebElement> cells=row.findElements(By.tagName("td"));
     //cells.get(7).findElement(By.tagName("a")).click();

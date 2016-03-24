@@ -12,16 +12,16 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
  */
 public class TestBase {
 
-    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+  protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
-    @BeforeSuite
+  @BeforeSuite
   public void setUp() throws Exception {
-      app.init();
+    app.init();
   }
 
-    @AfterSuite
+  @AfterSuite
   public void tearDown() {
-      app.stop();
+    app.stop();
   }
 
 }
