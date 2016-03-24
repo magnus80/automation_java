@@ -16,8 +16,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ContactComparisonDataTest extends TestBase {
 
-//    ясно, значит все что видно в списке на главной + миддлнейм - это обязательно, остальное - на усмотрение
-
+// ясно, значит все что видно в списке на главной + миддлнейм - это обязательно, остальное - на усмотрение
+// сравнивать ФИО, адрес, телефоны (3), мыло (3)
+//  заведите в классе ContactData атрибут fio и в его get-методе сразу соберите ФИО с пробелами....если пробелы убрать, то можно не отловить ситуацию:
+//  Иван Иванов
+//  Ива нИванов
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().homePage();
@@ -32,21 +35,27 @@ public class ContactComparisonDataTest extends TestBase {
   }
 
   @Test
-  public void testContactPhones() {
+  public void testContactComparisonData() {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    ContactData contactInfoFromDetailsForm = app.contact().infoFromDetailsForm(contact);
+    assertThat(contactInfoFromEditForm, equalTo(mergeData(contactInfoFromDetailsForm)));
   }
 
-  private String mergePhones(ContactData contact) {
+  private String mergeData(ContactData contact) {
     return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
             .stream().filter((s) -> !s.equals("")) //фильтрация от пустых значений
-            .map(ContactPhonesTests::cleanedPhones)  //очистка от лишних символов
+            .map(ContactComparisonDataTest::cleanedPhones)
+            .map(ContactComparisonDataTest::cleanedEmails)  //очистка от лишних символов
             .collect(Collectors.joining("\n")); //склейка
   }
 
   public static String cleanedPhones(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  }
+
+  public static String cleanedEmails(String email) {
+    return email.replaceAll("\\s", "").replaceAll("[-()]", "");
   }
 }
