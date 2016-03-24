@@ -10,3 +10,5 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 .idea/workspace.xml
+*.log
+addressbook-web-tests/debug.log
