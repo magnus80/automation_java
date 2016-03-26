@@ -18,17 +18,17 @@ public class ContactData {
   private String email3;
   private String allPhones;
   private String allEmails;
+  private String allData;
+  private String fio;
 
-  public String getFio() {
-    return fio;
+  public String getAllData() {
+    return allData;
   }
 
-  public ContactData withFio(String fio) {
-    this.fio = fio;
+  public ContactData withAllData(String allData) {
+    this.allData = allData;
     return this;
   }
-
-  private String fio;
 
   public String getEmail3() {
     return email3;
@@ -215,4 +215,12 @@ public class ContactData {
   }
 
 
+  public String getFio() {
+    return fio;
+  }
+
+  public ContactData withFio(String fio) {
+    this.fio = fio;
+    return this;
+  }
 }
