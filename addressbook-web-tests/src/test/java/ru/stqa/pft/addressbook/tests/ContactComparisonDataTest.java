@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import net.sourceforge.htmlunit.corejs.javascript.regexp.SubString;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -16,11 +17,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ContactComparisonDataTest extends TestBase {
 
-// ясно, значит все что видно в списке на главной + миддлнейм - это обязательно, остальное - на усмотрение
-// сравнивать ФИО, адрес, телефоны (3), мыло (3)
-//  заведите в классе ContactData атрибут fio и в его get-методе сразу соберите ФИО с пробелами....если пробелы убрать, то можно не отловить ситуацию:
-//  Иван Иванов
-//  Ива нИванов
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().homePage();
@@ -38,24 +34,18 @@ public class ContactComparisonDataTest extends TestBase {
   public void testContactComparisonData() {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+    ContactData contactInfoFromEditForm = app.contact().infoFIOFromEditForm(contact);
     ContactData contactInfoFromDetailsForm = app.contact().infoFromDetailsForm(contact);
-    assertThat(contactInfoFromEditForm, equalTo(mergeData(contactInfoFromDetailsForm)));
+    assertThat(contactInfoFromDetailsForm.getAllData(), equalTo(mergeData(contactInfoFromEditForm)));
   }
 
   private String mergeData(ContactData contact) {
-    return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+    return Arrays.asList(contact.getFio(), contact.getNickname(), contact.getAddress(), contact.getHomePhone(), contact.getMobilePhone()
+            , contact.getWorkPhone(), contact.getEmail(), contact.getEmail2(), contact.getEmail3())
             .stream().filter((s) -> !s.equals("")) //фильтрация от пустых значений
-            .map(ContactComparisonDataTest::cleanedPhones)
-            .map(ContactComparisonDataTest::cleanedEmails)  //очистка от лишних символов
+            //.map(ContactComparisonDataTest::fio) //очистка от лишних символов
+            //.map(ContactComparisonDataTest::cleanedEmails)//очистка от лишних символов
             .collect(Collectors.joining("\n")); //склейка
   }
 
-  public static String cleanedPhones(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
-  }
-
-  public static String cleanedEmails(String email) {
-    return email.replaceAll("\\s", "").replaceAll("[-()]", "");
-  }
 }
