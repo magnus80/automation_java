@@ -18,7 +18,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactCreation() {
-    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    //click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("Enter"));
   }
 
   public void fillContactForm(ContactData contactData) {
@@ -26,6 +27,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("nickname"), contactData.getNickname());
+    attach(By.name("photo"), contactData.getPhoto());
     type(By.name("title"), contactData.getTitle());
     type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
@@ -49,12 +51,17 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactModification() {
-    click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    click(By.name("update"));
+    //click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    contactCache=null;
   }
 
   public void deleteSelectedContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-    wd.switchTo().alert().accept();
+    if (isAlertPresent())
+      wd.switchTo().alert().accept();
+    /*click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    wd.switchTo().alert().accept();*/
   }
 
   public void delete(ContactData contact) {
@@ -81,7 +88,7 @@ public class ContactHelper extends HelperBase {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
-    click(By.linkText("home page"));
+    click(By.linkText("home"));
   }
 
   public void modify(ContactData contact) {
