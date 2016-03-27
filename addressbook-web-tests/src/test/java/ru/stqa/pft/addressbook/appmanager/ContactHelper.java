@@ -18,8 +18,9 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactCreation() {
-    //click(By.xpath("//div[@id='content']/form/input[21]"));
-    click(By.name("Enter"));
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+    //click(By.name("Enter"));
+
   }
 
   public void fillContactForm(ContactData contactData) {
@@ -53,7 +54,7 @@ public class ContactHelper extends HelperBase {
   public void submitContactModification() {
     click(By.name("update"));
     //click(By.xpath("//div[@id='content']/form[1]/input[22]"));
-    contactCache=null;
+    contactCache = null;
   }
 
   public void deleteSelectedContact() {
