@@ -1,6 +1,5 @@
 <list>
   <contact>
-    <id>2147483647</id>
     <firstname>Firstname 0</firstname>
     <middlename>Middlename 0</middlename>
     <lastname>Lastname 0</lastname>
@@ -11,7 +10,6 @@
     <email>email 0</email>
   </contact>
   <contact>
-    <id>2147483647</id>
     <firstname>Firstname 1</firstname>
     <middlename>Middlename 1</middlename>
     <lastname>Lastname 1</lastname>
@@ -22,7 +20,6 @@
     <email>email 1</email>
   </contact>
   <contact>
-    <id>2147483647</id>
     <firstname>Firstname 2</firstname>
     <middlename>Middlename 2</middlename>
     <lastname>Lastname 2</lastname>
@@ -31,82 +28,5 @@
     <mobilePhone>54658</mobilePhone>
     <workPhone>23654</workPhone>
     <email>email 2</email>
-  </contact>
-  <contact>
-    <id>2147483647</id>
-    <firstname>Firstname 3</firstname>
-    <middlename>Middlename 3</middlename>
-    <lastname>Lastname 3</lastname>
-    <address>Address 3</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 3</email>
-  </contact>
-  <contact>
-    <id>2147483647</id>
-    <firstname>Firstname 4</firstname>
-    <middlename>Middlename 4</middlename>
-    <lastname>Lastname 4</lastname>
-    <address>Address 4</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 4</email>
-  </contact>
-  <contact>
-    <id>2147483647</id>
-    <firstname>Firstname 5</firstname>
-    <middlename>Middlename 5</middlename>
-    <lastname>Lastname 5</lastname>
-    <address>Address 5</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 5</email>
-  </contact>
-  <contact>
-    <id>2147483647</id>
-    <firstname>Firstname 6</firstname>
-    <middlename>Middlename 6</middlename>
-    <lastname>Lastname 6</lastname>
-    <address>Address 6</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 6</email>
-  </contact>
-  <contact>
-    <id>2147483647</id>
-    <firstname>Firstname 7</firstname>
-    <middlename>Middlename 7</middlename>
-    <lastname>Lastname 7</lastname>
-    <address>Address 7</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 7</email>
-  </contact>
-  <contact>
-    <id>2147483647</id>
-    <firstname>Firstname 8</firstname>
-    <middlename>Middlename 8</middlename>
-    <lastname>Lastname 8</lastname>
-    <address>Address 8</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 8</email>
-  </contact>
-  <contact>
-    <id>2147483647</id>
-    <firstname>Firstname 9</firstname>
-    <middlename>Middlename 9</middlename>
-    <lastname>Lastname 9</lastname>
-    <address>Address 9</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 9</email>
   </contact>
 </list>
