@@ -43,11 +43,11 @@ public class ContactDataGenerator {
   }
 
   private void save(List<ContactData> contacts, File file) throws IOException {
-    System.out.println();
+    System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
-      writer.write(String.format("%s,%s,%s,%s,%s,%s,%s\n", contact.getFirstname(), contact.getMiddlename(), contact.getLastname(),
-              contact.getAddress(), contact.getHomePhone(), contact.getWorkPhone(), contact.getMobilePhone()));
+      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getMiddlename(), contact.getLastname(),
+              contact.getAddress(), contact.getEmail(), contact.getHomePhone(), contact.getWorkPhone(), contact.getMobilePhone()));
     }
     writer.close();
   }
@@ -55,9 +55,9 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
-      contacts.add(new ContactData().withFirstname(String.format("%s", i)).withMiddlename(String.format("%s", i)).
-              withLastname(String.format("%s", i)).withAddress(String.format("%s", i)).withHomePhone(String.format("%s", i)).
-              withHomePhone(String.format("%s", i)).withWorkPhone(String.format("%s", i)).withMobilePhone(String.format("%s", i)));
+      contacts.add(new ContactData().withFirstname(String.format("Firstname %s", i)).withMiddlename(String.format("Middlename %s", i)).
+              withLastname(String.format("Lastname %s", i)).withAddress(String.format("Address %s", i)).withEmail(String.format("email %s", i)).
+              withHomePhone(String.format("5432", i)).withWorkPhone(String.format("23654", i)).withMobilePhone(String.format("54658", i)));
     }
     return contacts;
   }
