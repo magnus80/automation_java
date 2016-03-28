@@ -15,28 +15,27 @@ public class GroupCreationTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroups() throws IOException {
-    List<Object[]> list=new ArrayList<>();
-    BufferedReader reader=new BufferedReader(new FileReader("src/test/resources/groups.csv"));
-    String line=reader.readLine();
-    while (line!=null){
+    List<Object[]> list = new ArrayList<>();
+    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.csv"));
+    String line = reader.readLine();
+    while (line != null) {
       String[] split = line.split(";");
       list.add(new Object[]{new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
-      line=reader.readLine();
+      line = reader.readLine();
     }
     return list.iterator();
   }
 
   @Test(dataProvider = "validGroups")
   public void testGroupCreation(GroupData group) {
-//      GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
-      app.goTo().groupPage();
-      Groups before = app.group().all();
-      app.group().create(group);
-      assertThat(app.group().count(), equalTo(before.size() + 1));
-      Groups after = app.group().all();
-      //assertThat(after.size(), equalTo(before.size() + 1));
-      assertThat(after, equalTo(
-              before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    app.goTo().groupPage();
+    Groups before = app.group().all();
+    app.group().create(group);
+    assertThat(app.group().count(), equalTo(before.size() + 1));
+    Groups after = app.group().all();
+    //assertThat(after.size(), equalTo(before.size() + 1));
+    assertThat(after, equalTo(
+            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
 }

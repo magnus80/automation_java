@@ -5,7 +5,10 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,17 +20,17 @@ import static org.testng.Assert.assertEquals;
 public class ContactCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validContacts() {
+  public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list = new ArrayList<>();
-    list.add(new Object[]{new ContactData().withFirstname("Firstname1").withMiddlename("Middlename1").
-            withLastname("Lastname1").withAddress("Address 1").withEmail("email 1").withHomePhone("54321").
-            withWorkPhone("236541").withMobilePhone("66566")});
-    list.add(new Object[]{new ContactData().withFirstname("Firstname2").withMiddlename("Middlename2").
-            withLastname("Lastname2").withAddress("Address 2").withEmail("email 2").withHomePhone("54321").
-            withWorkPhone("236541").withMobilePhone("66566")});
-    list.add(new Object[]{new ContactData().withFirstname("Firstname3").withMiddlename("Middlename3").
-            withLastname("Lastname3").withAddress("Address 3").withEmail("email 3").withHomePhone("54321").
-            withWorkPhone("236541").withMobilePhone("66566")});
+    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.csv"));
+    String line = reader.readLine();
+    while (line != null) {
+      String[] split = line.split(";");
+      list.add(new Object[]{new ContactData().withFirstname(split[0]).withMiddlename(split[1]).
+              withLastname(split[2]).withAddress(split[3]).withEmail(split[4]).withHomePhone(split[5]).
+              withWorkPhone(split[6]).withMobilePhone(split[7])});
+      line = reader.readLine();
+    }
     return list.iterator();
   }
 
@@ -36,7 +39,6 @@ public class ContactCreationTests extends TestBase {
     app.goTo().homePage();
     Contacts before = app.contact().all();
     File photo = new File("/src/test/resources/stru.png");
-    //ContactData contact = new ContactData().withFirstname("Ivan80").withLastname("Ivanov").withPhoto(photo);
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
