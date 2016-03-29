@@ -38,8 +38,6 @@ public class ContactData {
     return this;
   }
 
-
-
   public String getAllData() {
     return allData;
   }
@@ -232,7 +230,6 @@ public class ContactData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
-
 
   public String getFio() {
     return fio;

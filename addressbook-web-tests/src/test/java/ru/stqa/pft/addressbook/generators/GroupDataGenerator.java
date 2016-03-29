@@ -44,41 +44,40 @@ public class GroupDataGenerator {
 
   private void run() throws IOException {
     List<GroupData> groups = generateGroups(count);
-    if (format.equals("csv")){
-      saveAsScv(groups,new File(file));
+    if (format.equals("csv")) {
+      saveAsScv(groups, new File(file));
     } else if (format.equals("xml")) {
       saveAsXml(groups, new File(file));
     } else if (format.equals("json")) {
-        saveAsJson(groups,new File(file));
-    }
-     else
-      System.out.println("Unrecognized format: "+ format);
+      saveAsJson(groups, new File(file));
+    } else
+      System.out.println("Unrecognized format: " + format);
   }
 
   private void saveAsJson(List<GroupData> groups, File file) throws IOException {
-    Gson gson=new GsonBuilder().setPrettyPrinting().create();
-    String json=gson.toJson(groups);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    String json = gson.toJson(groups);
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private void saveAsXml(List<GroupData> groups, File file) throws IOException {
-    XStream xstream=new XStream();
+    XStream xstream = new XStream();
     xstream.processAnnotations(GroupData.class);
-    String xml=xstream.toXML(groups);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    String xml = xstream.toXML(groups);
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
   private void saveAsScv(List<GroupData> groups, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
-    Writer writer = new FileWriter(file);
-    for (GroupData group : groups) {
-      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
+    try (Writer writer = new FileWriter(file)) {
+      for (GroupData group : groups) {
+        writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
+      }
     }
-    writer.close();
   }
 
   private List<GroupData> generateGroups(int count) {

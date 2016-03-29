@@ -44,42 +44,44 @@ public class ContactDataGenerator {
 
   private void run() throws IOException {
     List<ContactData> contacts = generateContacts(count);
-    if (format.equals("csv")){
-      saveAsCsv(contacts,new File(file));
+    if (format.equals("csv")) {
+      saveAsCsv(contacts, new File(file));
     } else if ((format.equals("xml"))) {
       saveAsXml(contacts, new File(file));
-    }else if ((format.equals("json"))) {
+    } else if ((format.equals("json"))) {
       saveAsJson(contacts, new File(file));
-     }
-      else
-      System.out.println("Unrecognized format: "+ format);
+    } else
+      System.out.println("Unrecognized format: " + format);
   }
 
   private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
-    Gson gson=new GsonBuilder().setPrettyPrinting().create();
-    String json=gson.toJson(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    String json = gson.toJson(contacts);
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
+    //writer.close();*/
   }
 
   private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
-    XStream xstream=new XStream();
+    XStream xstream = new XStream();
     xstream.processAnnotations(ContactData.class);
-    String xml=xstream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    String xml = xstream.toXML(contacts);
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
+    //writer.close();
   }
 
   private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
-    Writer writer = new FileWriter(file);
-    for (ContactData contact : contacts) {
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getMiddlename(), contact.getLastname(),
-              contact.getAddress(), contact.getEmail(), contact.getHomePhone(), contact.getWorkPhone(), contact.getMobilePhone()));
+    try (Writer writer = new FileWriter(file)) {
+      for (ContactData contact : contacts) {
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getMiddlename(), contact.getLastname(),
+                contact.getAddress(), contact.getEmail(), contact.getHomePhone(), contact.getWorkPhone(), contact.getMobilePhone()));
+      }
     }
-    writer.close();
+    //writer.close();
   }
 
   private List<ContactData> generateContacts(int count) {
