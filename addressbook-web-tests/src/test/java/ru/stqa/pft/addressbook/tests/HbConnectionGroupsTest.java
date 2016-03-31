@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by KIryshkov on 31.03.2016.
  */
-public class HbConnectionTest {
+public class HbConnectionGroupsTest {
 
   private SessionFactory sessionFactory;
 
