@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
@@ -16,12 +17,14 @@ public class ContactData {
   @Column(name = "id")
   private int id = Integer.MAX_VALUE;
 
+  @Expose
   @Column(name = "firstname")
   private String firstname;
 
   @Transient
   private String middlename;
 
+  @Expose
   @Column(name = "lastname")
   private String lastname;
 
@@ -32,18 +35,22 @@ public class ContactData {
   @Transient
   private String company;
 
+  @Expose
   @Column(name = "address")
   @Type(type="text")
   private String address;
 
+  @Expose
   @Column(name = "home")
   @Type(type="text")
   private String homePhone;
 
+  @Expose
   @Column(name = "mobile")
   @Type(type="text")
   private String mobilePhone;
 
+  @Expose
   @Column(name = "work")
   @Type(type="text")
   private String workPhone;
@@ -67,6 +74,7 @@ public class ContactData {
   @Transient
   private String fio;
 
+  @Expose
   @Column(name = "photo")
   @Type(type="text")
   private String photo;
@@ -79,7 +87,6 @@ public class ContactData {
     this.group = group;
     return this;
   }
-
 
   public File getPhoto() {
     return new File(photo);
