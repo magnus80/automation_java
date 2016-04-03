@@ -25,18 +25,18 @@ public class ContactHelper extends HelperBase {
 
   public void fillContactForm(ContactData contactData) {
     type(By.name("firstname"), contactData.getFirstname());
-    type(By.name("middlename"), contactData.getMiddlename());
+    //type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
-    type(By.name("nickname"), contactData.getNickname());
-    attach(By.name("photo"), contactData.getPhoto());
-    type(By.name("title"), contactData.getTitle());
-    type(By.name("company"), contactData.getCompany());
+    //type(By.name("nickname"), contactData.getNickname());
+    //attach(By.name("photo"), contactData.getPhoto());
+    //type(By.name("title"), contactData.getTitle());
+    //type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
-    type(By.name("fax"), contactData.getFax());
-    type(By.name("email"), contactData.getEmail());
+    /*type(By.name("fax"), contactData.getFax());
+    type(By.name("email"), contactData.getEmail());*/
   }
 
   public void initContactCreation() {
@@ -82,7 +82,7 @@ public class ContactHelper extends HelperBase {
     fillContactForm(contact);
     submitContactCreation();
     contactCache = null;
-    returnToContactPage();
+    //returnToContactPage();
   }
 
   public void returnToContactPage() {
@@ -94,7 +94,7 @@ public class ContactHelper extends HelperBase {
 
   public void modify(ContactData contact) {
     //не нужно выделять сразу редактировать
-    //selectContactById(contact.getId());
+    selectContactById(contact.getId());
     editContact();
     fillContactForm(contact);
     submitContactModification();

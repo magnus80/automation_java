@@ -8,25 +8,6 @@
     <mobilePhone>54658</mobilePhone>
     <workPhone>23654</workPhone>
     <email>email 0</email>
-  </contact>
-  <contact>
-    <firstname>Firstname 1</firstname>
-    <middlename>Middlename 1</middlename>
-    <lastname>Lastname 1</lastname>
-    <address>Address 1</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 1</email>
-  </contact>
-  <contact>
-    <firstname>Firstname 2</firstname>
-    <middlename>Middlename 2</middlename>
-    <lastname>Lastname 2</lastname>
-    <address>Address 2</address>
-    <homePhone>5432</homePhone>
-    <mobilePhone>54658</mobilePhone>
-    <workPhone>23654</workPhone>
-    <email>email 2</email>
+    <photo>src\test\resources\stru.png</photo>
   </contact>
 </list>
