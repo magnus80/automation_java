@@ -82,7 +82,7 @@ public class ContactHelper extends HelperBase {
     fillContactForm(contact);
     submitContactCreation();
     contactCache = null;
-    //returnToContactPage();
+    returnToContactPage();
   }
 
   public void returnToContactPage() {
@@ -94,8 +94,9 @@ public class ContactHelper extends HelperBase {
 
   public void modify(ContactData contact) {
     //не нужно выделять сразу редактировать
-    selectContactById(contact.getId());
-    editContact();
+    //selectContactById(contact.getId());
+    initContactModificationById(contact.getId());
+    //editContact();
     fillContactForm(contact);
     submitContactModification();
     contactCache = null;
