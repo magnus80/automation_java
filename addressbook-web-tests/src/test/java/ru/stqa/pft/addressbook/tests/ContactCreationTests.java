@@ -37,11 +37,11 @@ public class ContactCreationTests extends TestBase {
   }
 
   @Test(dataProvider = "validContacts")
-  
+
   public void testContactCreation(ContactData contact) {
     Groups groups = app.db().groups();
     File photo = new File("/src/test/resources/stru.png");
-    ContactData newContact=new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo)
+    ContactData newContact = new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo)
             .inGroup(groups.iterator().next());
     app.contact().create(contact);
     app.goTo().homePage();
@@ -52,5 +52,8 @@ public class ContactCreationTests extends TestBase {
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyContactListInUI();
   }
+
+
 }

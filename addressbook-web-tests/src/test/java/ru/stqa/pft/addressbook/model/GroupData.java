@@ -23,7 +23,7 @@ public class GroupData {
   private String name;
 
   @ManyToMany(mappedBy = "groups")
-  private Set<ContactData> contacts=new HashSet<ContactData>();
+  private Set<ContactData> contacts = new HashSet<ContactData>();
 
   @Override
   public boolean equals(Object o) {
@@ -50,12 +50,12 @@ public class GroupData {
 
   @Expose
   @Column(name = "group_header")
-  @Type(type="text")
+  @Type(type = "text")
   private String header;
 
   @Expose
   @Column(name = "group_footer")
-  @Type(type="text")
+  @Type(type = "text")
   private String footer;
 
   public GroupData withId(int id) {

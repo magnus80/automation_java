@@ -39,22 +39,22 @@ public class ContactData {
 
   @Expose
   @Column(name = "address")
-  @Type(type="text")
+  @Type(type = "text")
   private String address;
 
   @Expose
   @Column(name = "home")
-  @Type(type="text")
+  @Type(type = "text")
   private String homePhone;
 
   @Expose
   @Column(name = "mobile")
-  @Type(type="text")
+  @Type(type = "text")
   private String mobilePhone;
 
   @Expose
   @Column(name = "work")
-  @Type(type="text")
+  @Type(type = "text")
   private String workPhone;
 
   @Transient
@@ -76,11 +76,10 @@ public class ContactData {
   @Transient
   private String photo;
 
-  @ManyToMany
-  @JoinTable(name="address_in_groups",
-          joinColumns = @JoinColumn (name="id"),inverseJoinColumns = @JoinColumn(name="group_id"))
-  private Set<GroupData> groups=new HashSet<GroupData>();
-
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public File getPhoto() {
     return new File(photo);
