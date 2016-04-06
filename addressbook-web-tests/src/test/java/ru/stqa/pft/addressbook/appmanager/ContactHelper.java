@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void fillContactForm(ContactData contactData,boolean creation) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     //type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
@@ -39,9 +40,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("work"), contactData.getWorkPhone());
     /*type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmail());*/
-    if (creation){
-      if (contactData.getGroups().size()>0){
-        Assert.assertTrue(contactData.getGroups().size()==1);
+    if (creation) {
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
       }
     } else {
@@ -75,7 +76,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();*/
   }
 
-  public void delete(ContactData contact) {
+  public void deleteContact(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
     contactCache = null;
@@ -87,9 +88,9 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void create(ContactData contact) {
+  public void createContact(ContactData contact) {
     initContactCreation();
-    fillContactForm(contact,true);
+    fillContactForm(contact, true);
     submitContactCreation();
     contactCache = null;
     returnToContactPage();
@@ -102,12 +103,12 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public void modify(ContactData contact) {
+  public void modifyContact(ContactData contact) {
     //не нужно выделять сразу редактировать
     //selectContactById(contact.getId());
     initContactModificationById(contact.getId());
     //editContact();
-    fillContactForm(contact,true);
+    fillContactForm(contact, true);
     submitContactModification();
     contactCache = null;
     returnToContactPage();
@@ -202,5 +203,16 @@ public class ContactHelper extends HelperBase {
 
   private void initViewContactDetailsById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+  }
+
+  public void addToGroup(ContactData contactToMove, GroupData groupToAssign) {
+    selectContactById(contactToMove.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupToAssign.getName());
+    pressAddToGroupButton();
+    returnToContactPage();
+  }
+
+  public void pressAddToGroupButton() {
+    click(By.xpath("//[@id='content']/form[2]/div[4]/input"));
   }
 }

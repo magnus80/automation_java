@@ -6,8 +6,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.io.File;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -22,10 +20,10 @@ public class ContactModificationTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       app.goTo().groupPage();
       if (app.db().groups().size() == 0) {
-        app.group().create(new GroupData().withName("TestGroup100"));
+        app.group().createGroup(new GroupData().withName("TestGroup100"));
       }
       app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstname("Ivan100").withLastname("Ivanov").withAddress("sdgjkdsflij").
+      app.contact().createContact(new ContactData().withFirstname("Ivan100").withLastname("Ivanov").withAddress("sdgjkdsflij").
               withHomePhone("345").withMobilePhone("345435").withWorkPhone("345435"));
     }
   }
@@ -38,7 +36,7 @@ public class ContactModificationTests extends TestBase {
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId()).withFirstname("Ivan81").withLastname("Ivanov").withAddress("sdsdfrsdf").
                     withHomePhone("456456456").withMobilePhone("345435").withWorkPhone("456456");
-    app.contact().modify(modifiedContact);
+    app.contact().modifyContact(modifiedContact);
     assertThat(app.contact().count(), equalTo(before.size()));
     /*Contacts after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());*/

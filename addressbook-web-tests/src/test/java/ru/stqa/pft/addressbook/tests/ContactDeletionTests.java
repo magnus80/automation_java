@@ -20,10 +20,10 @@ public class ContactDeletionTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       app.goTo().groupPage();
       if (app.db().contacts().size() == 0) {
-        app.group().create(new GroupData().withName("TestGroup100"));
+        app.group().createGroup(new GroupData().withName("TestGroup100"));
       }
       app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstname("Ivan100").withMiddlename("I").withLastname("Ivanov").withNickname("Ivy"));
+      app.contact().createContact(new ContactData().withFirstname("Ivan100").withMiddlename("I").withLastname("Ivanov").withNickname("Ivy"));
     }
   }
 
@@ -31,7 +31,7 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion() {
     Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
-    app.contact().delete(deletedContact);
+    app.contact().deleteContact(deletedContact);
     assertThat(app.contact().count(), equalTo(before.size() - 1));
     Contacts after = app.db().contacts();
     //assertEquals(after.size(), before.size() - 1);

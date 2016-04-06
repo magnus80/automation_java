@@ -38,7 +38,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void deleteSelectedGroups() {
-    click(By.name("delete"));
+    click(By.name("deleteGroup"));
   }
 
   public void initGroupModification() {
@@ -49,7 +49,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void create(GroupData group) {
+  public void createGroup(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
@@ -57,7 +57,7 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
-  public void modify(GroupData group) {
+  public void modifyGroup(GroupData group) {
     selectGroupById(group.getId());
     initGroupModification();
     fillGroupForm(group);
@@ -66,7 +66,7 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
-  public void delete(GroupData group) {
+  public void deleteGroup(GroupData group) {
     selectGroupById(group.getId());
     deleteSelectedGroups();
     groupCache = null;

@@ -43,7 +43,7 @@ public class ContactCreationTests extends TestBase {
     File photo = new File("/src/test/resources/stru.png");
     ContactData newContact = new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo)
             .inGroup(groups.iterator().next());
-    app.contact().create(contact);
+    app.contact().createContact(contact);
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     assertThat(app.contact().count(), equalTo(before.size() + 1));

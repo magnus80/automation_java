@@ -256,6 +256,11 @@ public class ContactData {
     return new Groups(groups);
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -298,8 +303,4 @@ public class ContactData {
     return this;
   }
 
-  public ContactData inGroup(GroupData group) {
-    groups.add(group);
-    return this;
-  }
 }
