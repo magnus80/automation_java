@@ -32,6 +32,17 @@ public class ContactData {
 
   @Transient
   private String nickname;
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", groups=" + groups +
+            '}';
+  }
+
   @Transient
   private String title;
   @Transient
@@ -282,16 +293,6 @@ public class ContactData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
     return result;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", address='" + address + '\'' +
-            '}';
   }
 
   public String getFio() {

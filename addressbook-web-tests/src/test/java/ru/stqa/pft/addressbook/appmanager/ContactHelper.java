@@ -208,11 +208,15 @@ public class ContactHelper extends HelperBase {
   public void addToGroup(ContactData contactToMove, GroupData groupToAssign) {
     selectContactById(contactToMove.getId());
     new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupToAssign.getName());
-    pressAddToGroupButton();
+    addContactToGroup();
     returnToContactPage();
   }
 
-  public void pressAddToGroupButton() {
-    click(By.xpath("//[@id='content']/form[2]/div[4]/input"));
+  public void addContactToGroup() {
+    click(By.xpath("//input[contains(@value,'Add to')]"));
+  }
+
+  public void deleteContactFromGroup() {
+    click(By.xpath("//input[contains(@value,'Add to')]"));
   }
 }
