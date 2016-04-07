@@ -15,6 +15,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static ru.stqa.pft.addressbook.tests.TestBase.app;
@@ -56,12 +57,35 @@ public class ContactAddToGroupTests {
 
   @Test
   public void testAddContactToGroups(ContactData contact) {
-    Contacts contacts = app.db().contacts();
-    Groups groups = app.db().groups();
-    ContactData contactToMove = contacts.iterator().next();
+
+    app.goTo().groupPage();
+    Groups groups = app.group().all();
+    app.goTo().homePage();
+    Contacts before = app.db().contacts();
+    ContactData modifiedContact = before.iterator().next();
+    //Groups beforeGroups = app.db().groups();
+
+    app.contact().addToGroup(modifiedContact, groups.iterator().next());
+
+    for (ContactData contacts : (Set<ContactData>) before) {
+      System.out.println(contact);
+      System.out.println(contact.getGroups());
+      // System.out.println(contact.getGroups().size() + "<" + app.db().groups().size());
+      // System.out.println();
+
+      if (contact.getGroups().size() < app.db().groups().size()) {
+        System.out.println(contact);
+        System.out.println(contact.getGroups());
+
+      }
+
+    }
+
+
+    /*ContactData contactToMove = contacts.iterator().next();
     GroupData groupToAssign = groups.iterator().next();
 
-    app.contact().addToGroup(contactToMove, groupToAssign);
+    //app.contact().addToGroup(contactToMove, groupToAssign);
 
     System.out.println(contactToMove);
     System.out.println(groupToAssign);
@@ -73,7 +97,7 @@ public class ContactAddToGroupTests {
         flag = true;
       }
     }
-    Assert.assertTrue(flag);
+    Assert.assertTrue(flag);*/
     //ContactData contactMoved = contactToMove.inGroup(groupToAssign);
 
     //assertThat(groupToAssign.getId(), equalTo(contactMoved.getGroups().iterator().next().getId()));
