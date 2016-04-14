@@ -1,11 +1,11 @@
 package ru.stqa.pft.mantis.model;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
 
 import javax.persistence.Column;
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 /**
@@ -91,6 +91,4 @@ public class UserData {
             ", password='" + password + '\'' +
             '}';
   }
-
-
 }

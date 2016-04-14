@@ -5,7 +5,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
-import static ru.stqa.pft.mantis.tests.TestBase.app;
 
 /**
  * Created by KIryshkov on 14.04.2016.
@@ -24,7 +23,7 @@ public class ResetPasswordTests extends TestBase{
     String admin = app.getProperty("web.adminLogin");
     String password = app.getProperty("web.adminPassword");
     app.admin().adminLogin(admin,password);
-    app.admin().chooseUser();
+    app.admin().selectUser();
     //app.admin().resetPassword();
   }
 

@@ -19,7 +19,7 @@ public class DBHelper {
 
   public DBHelper() {
     final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure() // configures settings from hibernate.cfg.xml
+            .configure()
             .build();
     sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }

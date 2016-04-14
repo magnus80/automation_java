@@ -23,10 +23,10 @@ public class AdminHelper extends HelperBase{
     click(By.cssSelector("input[value='Login']"));
   }
 
-  public void chooseUser() {
+  public void selectUser() {
     //String adminLogin = app.getProperty("web.adminLogin");
     click(By.xpath("//a[contains(.,'Manage Users')]"));
-    WebElement selectedUser = wd.findElement(By.xpath("//a[contains(user3)]"));
+    WebElement selectedUser = wd.findElement(By.xpath("//a[contains(.,user3)]"));
     //WebElement chosenUser = users.stream().filter((u) -> !(u.getText().equals(adminLogin))).findFirst().get();
     selectedUser.click();
   }
