@@ -3,16 +3,15 @@ package ru.stqa.pft.mantis.model;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import javax.persistence.Column;
-import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
 
 /**
  * Created by KIryshkov on 14.04.2016.
  */
 @Entity
-@Table(name="mantis_user_table")
+@Table(name = "mantis_user_table")
 public class UserData {
   @XStreamOmitField
   @Id
@@ -25,7 +24,7 @@ public class UserData {
   @Column(name = "email")
   private String email;
 
-  @Column(name="password")
+  @Column(name = "password")
   private String password;
 
 
@@ -44,19 +43,27 @@ public class UserData {
     return this;
   }
 
-  public UserData withPassword(String password){
+  public UserData withPassword(String password) {
     this.password = password;
     //this.password = "password";
     return this;
   }
 
-  public int getId() {return id;}
+  public int getId() {
+    return id;
+  }
 
-  public String getUserName() {return userName;}
+  public String getUserName() {
+    return userName;
+  }
 
-  public String getEmail() {return email;}
+  public String getEmail() {
+    return email;
+  }
 
-  public String getPassword() {return password;}
+  public String getPassword() {
+    return password;
+  }
 
 
   @Override
