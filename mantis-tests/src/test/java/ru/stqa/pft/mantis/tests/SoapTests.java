@@ -8,6 +8,7 @@ import ru.stqa.pft.mantis.model.Project;
 import javax.xml.rpc.ServiceException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
@@ -25,7 +26,21 @@ public class SoapTests extends TestBase {
       System.out.println(project.getName());
     }
   }
+
   @Test
+  public void testGetIssues() throws RemoteException, ServiceException, MalformedURLException {
+    Set<Project> projects = app.soap().getProjects();
+  /*  Issue issue=new Issue().withSummary("Test issue").withDescription("Test issue description").withStatus("resolved")
+            .withProject(projects.iterator().next());*/
+    Set<Issue> issues = app.soap().getIssues(projects.iterator().next());
+    //System.out.println(issues.size());
+    for (Issue iss : issues) {
+      System.out.println(iss.getId());
+      System.out.println(iss.getStatus());
+    }
+   }
+
+    @Test
   public void testCreateIssue() throws RemoteException, ServiceException, MalformedURLException {
     Set<Project> projects = app.soap().getProjects();
     Issue issue=new Issue().withSummary("Test issue").withDescription("Test issue description")

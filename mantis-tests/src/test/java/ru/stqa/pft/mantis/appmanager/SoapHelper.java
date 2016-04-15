@@ -32,16 +32,15 @@ public class SoapHelper {
             .collect(Collectors.toSet());
   }
 //для домашнего задания
-  public Set<Issue> getIssues() throws RemoteException, MalformedURLException, ServiceException {
+  public Set<Issue> getIssues(Project pr) throws RemoteException, MalformedURLException, ServiceException {
     MantisConnectPortType mc = getMantisConnect();
-    Project pr=new Project();
-    IssueData issues = mc.mc_issue_get( app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(pr.getId()));
+    IssueData[] issues = mc. mc_project_get_issues( app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(pr.getId())
+            ,BigInteger.valueOf(1),BigInteger.valueOf(10));
     //преобразование полученных данных в объекты project
     return Arrays.asList(issues).stream()
             .map((i) -> new Issue().withId(i.getId().intValue()).withSummary(i.getSummary()).withDescription(i.getDescription()))
             .collect(Collectors.toSet());
   }
-
 
   private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     return new MantisConnectLocator().

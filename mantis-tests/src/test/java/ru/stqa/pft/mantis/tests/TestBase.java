@@ -22,12 +22,12 @@ public class TestBase {
     app.ftp().upload(new File("src/test/resources/config_inc.php"),"config_inc.php","config_inc.php.bak");
   }
 
-  @BeforeSuite
+/*  @BeforeSuite
   public void skipIfNotFixed(int issueId) {
     if (isIssueOpen(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
     }
-  }
+  }*/
 
   public boolean isIssueOpen(int issueId){
     return true;
