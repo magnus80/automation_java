@@ -1,4 +1,4 @@
-package ru.stqa.pft.soap;
+package ru.stqa.pft.soap.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

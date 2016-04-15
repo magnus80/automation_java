@@ -25,21 +25,17 @@ public class SoapHelper {
 
   public Set<Project> getProjects() throws RemoteException, MalformedURLException, ServiceException {
     MantisConnectPortType mc = getMantisConnect();
-    String admin = app.getProperty("web.adminLogin");
-    String pass = app.getProperty("web.adminPassword");
-    ProjectData[] projects = mc.mc_projects_get_user_accessible("administrator", "root");
+    ProjectData[] projects = mc.mc_projects_get_user_accessible(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     //преобразование полученных данных в объекты project
     return Arrays.asList(projects).stream()
             .map((p) -> new Project().withId(p.getId().intValue()).withName(p.getName()))
             .collect(Collectors.toSet());
   }
-
+//для домашнего задания
   public Set<Issue> getIssues() throws RemoteException, MalformedURLException, ServiceException {
     MantisConnectPortType mc = getMantisConnect();
-    String admin = app.getProperty("web.adminLogin");
-    String pass = app.getProperty("web.adminPassword");
     Project pr=new Project();
-    IssueData issues = mc.mc_issue_get("administrator", "root", BigInteger.valueOf(pr.getId()));
+    IssueData issues = mc.mc_issue_get( app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(pr.getId()));
     //преобразование полученных данных в объекты project
     return Arrays.asList(issues).stream()
             .map((i) -> new Issue().withId(i.getId().intValue()).withSummary(i.getSummary()).withDescription(i.getDescription()))
@@ -49,7 +45,7 @@ public class SoapHelper {
 
   private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     return new MantisConnectLocator().
-            getMantisConnectPort(new URL("http://localhost:81/mantisbt-1.2.19/api/soap/mantisconnect.php"));
+            getMantisConnectPort(new URL(app.getProperty("soap.URL")));
   }
 
   public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
