@@ -12,7 +12,6 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 /**
  * Created by KIryshkov on 15.04.2016.
  */
@@ -42,7 +41,7 @@ public class SoapHelper {
             .collect(Collectors.toSet());
   }
 
-  private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+  public MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     return new MantisConnectLocator().
             getMantisConnectPort(new URL(app.getProperty("soap.URL")));
   }

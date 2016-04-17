@@ -33,7 +33,7 @@ public class SoapTests extends TestBase {
   /*  Issue issue=new Issue().withSummary("Test issue").withDescription("Test issue description").withStatus("resolved")
             .withProject(projects.iterator().next());*/
     Set<Issue> issues = app.soap().getIssues(projects.iterator().next());
-    //System.out.println(issues.size());
+    System.out.println(issues.size());
     for (Issue iss : issues) {
       System.out.println(iss.getId());
       System.out.println(iss.getStatus());
