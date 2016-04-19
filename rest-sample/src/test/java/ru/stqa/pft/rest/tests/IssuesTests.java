@@ -12,10 +12,11 @@ public class IssuesTests extends TestBase {
 
   @Test
   public void testPreconditions() throws IOException {
-    getIssueById(2);
+
     //isIssueOpen(1);
-    /*skipIfNotFixed(1);
-    skipIfNotFixed(2);*/
+    skipIfNotFixed(1);
+    skipIfNotFixed(2);
+    skipIfNotFixed(3);
   }
 
 }

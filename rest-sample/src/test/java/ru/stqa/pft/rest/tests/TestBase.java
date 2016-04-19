@@ -30,7 +30,6 @@ public class TestBase {
     //app.ftp().upload(new File("src/test/resources/config_inc.php"),"config_inc.php","config_inc.php.bak");
   }
 
-  @BeforeSuite
   public void skipIfNotFixed(int issueId) throws IOException {
     if (isIssueOpen(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
@@ -53,8 +52,7 @@ public class TestBase {
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
-    }.getType());
+    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
   }
 
   public Set<Issue> getIssues() throws IOException {
@@ -64,7 +62,7 @@ public class TestBase {
   public Issue getIssueById(int id) throws IOException {
     Issue issue = new Issue();
     getIssuesSet(String.format("http://demo.bugify.com/api/issues/%s.json", id))
-            .stream().findAny().map
+            .stream().findFirst().map
             ((i) -> issue.withId(i.getId()).withSubject(i.getSubject())
                     .withDescription(i.getDescription())
                     .withState(i.getState())
