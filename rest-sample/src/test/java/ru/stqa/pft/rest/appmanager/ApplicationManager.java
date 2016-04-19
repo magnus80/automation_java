@@ -20,10 +20,6 @@ public class ApplicationManager {
   private WebDriver wd;
 
   private String browser;
-  private RegistrationHelper registrationHelper;
-  private FtpHelper ftp;
-  private MailHelper mailHelper;
-  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -36,51 +32,21 @@ public class ApplicationManager {
   }
 
   public void stop() {
-    if (wd!=null){
-    wd.quit();
+    if (wd != null) {
+      wd.quit();
     }
   }
 
-  public HttpSession newSession(){
+  public HttpSession newSession() {
     return new HttpSession(this);
-}
+  }
 
-  public String getProperty(String key){
+  public String getProperty(String key) {
     return properties.getProperty(key);
   }
 
-  public SoapHelper soap() {
-    if (soapHelper==null) {
-      soapHelper = new SoapHelper(this);
-    }
-    return soapHelper;
-  }
-
-
-  public RegistrationHelper registration() {
-    if (registrationHelper==null) {
-      registrationHelper = new RegistrationHelper(this);
-    }
-    return registrationHelper;
-  }
-
-
-  public FtpHelper ftp(){
-    if (ftp==null) {
-      ftp = new FtpHelper(this);
-    }
-    return ftp;
-  }
-
-  public MailHelper mail(){
-    if (mailHelper==null) {
-      mailHelper = new MailHelper(this);
-    }
-    return mailHelper;
-  }
-
-  public WebDriver getDriver() {
-    if (wd==null){
+  /*public WebDriver getDriver() {
+    if (wd == null) {
       if (browser == BrowserType.FIREFOX) {
         wd = new FirefoxDriver();
       } else if (browser == BrowserType.CHROME) {
@@ -92,5 +58,5 @@ public class ApplicationManager {
       wd.get(properties.getProperty("web.baseUrl"));
     }
     return wd;
-  }
+  }*/
 }
