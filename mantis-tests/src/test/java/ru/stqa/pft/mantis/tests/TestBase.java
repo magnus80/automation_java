@@ -28,7 +28,7 @@ public class TestBase {
     app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
   }
 
-  @BeforeSuite
+
   public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
     if (isIssueOpen(issueId)) {
       if (isIssueOpen(issueId)) {

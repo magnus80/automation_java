@@ -36,7 +36,7 @@ public class SoapTests extends TestBase {
     System.out.println(issues.size());
     for (Issue iss : issues) {
       System.out.println(iss.getId());
-      System.out.println(iss.getStatus());
+      System.out.println(iss.getStatus().toString());
     }
   }
 
@@ -51,7 +51,7 @@ public class SoapTests extends TestBase {
 
   @Test
   public void getIss() throws RemoteException, ServiceException, MalformedURLException {
-    skipIfNotFixed(0000001);
+    skipIfNotFixed(1);
     System.out.println("Issue#1 was fixed - enjoy the test :)");
   }
 }
