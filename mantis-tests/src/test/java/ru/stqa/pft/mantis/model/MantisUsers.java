@@ -22,7 +22,7 @@ public class MantisUsers {
     return password;
   }
 
-  public MantisUsers setPassword(String password) {
+  public MantisUsers withPassword(String password) {
     this.password = password;
     return this;
   }
@@ -31,7 +31,7 @@ public class MantisUsers {
     return email;
   }
 
-  public MantisUsers setEmail(String email) {
+  public MantisUsers withEmail(String email) {
     this.email = email;
     return this;
   }

@@ -2,6 +2,7 @@ package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import ru.stqa.pft.mantis.model.MantisUsers;
 
 import java.util.List;
 
@@ -30,7 +31,15 @@ public class AdminHelper extends HelperBase {
     selectedUser.click();
   }
 
-  public void resetPassword() {
-
+  public MantisUsers getUser() {
+    String name = wd.findElement(By.name("username")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    return new MantisUsers().withUsername(name).withEmail(email);
   }
+
+  public void resetPassword() {
+    click(By.xpath("//input[@value='Reset Password']"));
+  }
+
+
 }
