@@ -8,15 +8,13 @@ import java.util.List;
 /**
  * Created by KIryshkov on 14.04.2016.
  */
-public class AdminHelper extends HelperBase{
+public class AdminHelper extends HelperBase {
 
   public AdminHelper(ApplicationManager app) {
     super(app);
   }
 
-  public void adminLogin(String username,String password) {
-    /*String adminLogin = app.getProperty("web.adminLogin");
-    String adminPassword = app.getProperty("web.adminPassword");*/
+  public void adminLogin(String username, String password) {
     wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
     type(By.name("username"), username);
     type(By.name("password"), password);
@@ -24,10 +22,11 @@ public class AdminHelper extends HelperBase{
   }
 
   public void selectUser() {
-    //String adminLogin = app.getProperty("web.adminLogin");
+    click(By.xpath("//a[contains(.,'Manage')]"));
     click(By.xpath("//a[contains(.,'Manage Users')]"));
-    WebElement selectedUser = wd.findElement(By.xpath("//a[contains(.,user3)]"));
-    //WebElement chosenUser = users.stream().filter((u) -> !(u.getText().equals(adminLogin))).findFirst().get();
+    List<WebElement> users = wd.findElements(By.xpath("//*[@class=\"row-2\" or @class=\"row-1\"]//a"));
+    WebElement selectedUser = users.stream().filter((u) -> !(u.getText().equals(app.getProperty("web.adminLogin"))))
+            .findFirst().get();
     selectedUser.click();
   }
 

@@ -11,7 +11,7 @@ import static org.testng.Assert.assertTrue;
  */
 
 
-public class ResetPasswordTests extends TestBase{
+public class ResetPasswordTests extends TestBase {
 
   @BeforeMethod
   public void startMailServer() {
@@ -19,10 +19,8 @@ public class ResetPasswordTests extends TestBase{
   }
 
   @Test
-  public void testResetPassword(){
-    String admin = app.getProperty("web.adminLogin");
-    String password = app.getProperty("web.adminPassword");
-    app.admin().adminLogin(admin,password);
+  public void testResetPassword() {
+    app.admin().adminLogin(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     app.admin().selectUser();
     //app.admin().resetPassword();
   }
