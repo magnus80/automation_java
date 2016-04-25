@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -15,13 +16,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ru.stqa.pft.addressbook.tests.TestBase.app;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by KIryshkov on 07.04.2016.
  */
-public class ContactRemoveFromGroupTests extends TestBase{
+public class ContactRemoveFromGroupTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validContacts() throws IOException {
@@ -53,8 +54,8 @@ public class ContactRemoveFromGroupTests extends TestBase{
     }
   }
 
-
-  public void testContactRemoveFromGroup(){
+  @Test
+  public void testContactRemoveFromGroup() {
     Contacts beforeContacts = app.db().contacts();
     Groups beforeGroups = app.db().groups();
     ContactData contactToGroup = app.db().contacts().iterator().next();
@@ -77,24 +78,24 @@ public class ContactRemoveFromGroupTests extends TestBase{
 
     Groups beforeContactToGroup = contactToGroup.getGroups();
 
-    /*if (!foundContactAndGroup) {
+    if (!foundContactAndGroup) {
       addContactToGroup(contactToGroup, groupForContact);
       beforeContacts = app.db().contacts();
 
-      for (ContactData c : beforeContacts ) {
+      for (ContactData c : beforeContacts) {
         if (c.getId() == contactToGroup.getId()) {
           beforeContactToGroup = c.getGroups();
           break;
         }
       }
-    }*/
+    }
 
     removeContactFromGroup(contactToGroup, groupForContact);
 
     Contacts afterContacts = app.db().contacts();
     Groups afterContactToGroup = null;
 
-    for (ContactData c : afterContacts ) {
+    for (ContactData c : afterContacts) {
       if (c.getId() == contactToGroup.getId()) {
         afterContactToGroup = c.getGroups();
         break;
@@ -110,5 +111,10 @@ public class ContactRemoveFromGroupTests extends TestBase{
   private void removeContactFromGroup(ContactData contactToGroup, GroupData groupForContact) {
   }
 
+  private void addContactToGroup(ContactData modifiedContact, GroupData modifiedGroup) {
+    app.goTo().homePage();
+    app.contact().addToGroup(modifiedContact, modifiedGroup);
+    app.contact().addContactToGroup();
+  }
 
 }

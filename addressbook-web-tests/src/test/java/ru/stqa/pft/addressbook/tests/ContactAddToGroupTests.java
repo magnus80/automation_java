@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.stqa.pft.addressbook.tests.TestBase.app;
 
 /**
  * Created by KIryshkov on 06.04.2016.
