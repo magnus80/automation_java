@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Configuration;
 import ru.stqa.pft.rest.appmanager.ApplicationManager;
 import ru.stqa.pft.rest.model.Issue;
 
