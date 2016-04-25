@@ -77,7 +77,7 @@ public class ContactRemoveFromGroupTests extends TestBase{
 
     Groups beforeContactToGroup = contactToGroup.getGroups();
 
-    if (!foundContactAndGroup) {
+    /*if (!foundContactAndGroup) {
       addContactToGroup(contactToGroup, groupForContact);
       beforeContacts = app.db().contacts();
 
@@ -87,7 +87,7 @@ public class ContactRemoveFromGroupTests extends TestBase{
           break;
         }
       }
-    }
+    }*/
 
     removeContactFromGroup(contactToGroup, groupForContact);
 
