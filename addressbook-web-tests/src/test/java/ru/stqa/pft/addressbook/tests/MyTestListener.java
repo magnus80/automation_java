@@ -4,6 +4,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 
 /**
